@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+## Welcome to my report of Data Challenge
 
-You can use the [editor on GitHub](https://github.com/BaoDNguyen/BioVis2019_DataChallenge/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+There are 235,545,792 edges in [refseq93.edge.tsv](http://biovis.net/2019/biovisChallenges_vis/), so it is impossible to create an network of all these edges in my computer. Therefore, I tried to look at the relationships of species instead of individual genomes.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+To do so, I initially separated the genomes into isolated clusters. There is no connection between two genomes in any two of these clusters. I wrote a c++ code, namely [getclusters.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EWlz7NvZdhlGvrDChUfzqxQBvuhx7HGFjwvnUog0Rcs11A?e=fre6N8), to handle this job. The result was [cluster.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EZK8MQoEiNpOmKbLYLqN0JEBy7BMGO1VSGQFfp0NYfHtVg?e=RDAQK8).
+Then, I arranged the identified numbers of the clusters by [get_cluster_arrange.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EdU3YGh3qMBOiuVdYrYj_m8BUXOdcTNtETi0CQSwih1WZg?e=jUbxOn) to get [cluster_arrange.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EdxAjyHmqNdNvpTHwZUthbIBgYAYFn7ouvLmAXmweQjyKQ?e=HexNVD).
+After that, I removed any clusters in which there are only genomes of similar species by [get_cluster_reduced.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EcpxQdbYY-BHgq0o361hp4MBTlfY-lo_NAB564U7tPE6Zg?e=ygn6Oe), before get edges of genomes in the remaining clusters by [get_edges_from_cluster_reduced.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/Efp55P7GLCJFoLXQRCbDXeEB5-BZd8bMlRCFvU9FniEmTA?e=2Nr9ga).
+Next, I continued deleting the edges of two genomes that are in the same species by [get_edges_from_cluster_reduced2.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EaenyvpU0StCi5fII_BLya8ByxyXfDbjBT0UXCu54AnzsA?e=FBOR29).
+Finally, I replaced each genome by its color using [get_edges_color.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EVlM9srPUj1CqKb982SsKygBLlmrZQewchpcyiACndxzkA?e=6aNyeC), before reducing its size by [get_edges_color_reduced.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EYWYBlSNRfBImO9o72c2wR8B5234xsDJuFMET4rFwUcaNg?e=m5225a).
 
-### Markdown
+In the final file, namely [edges_color_reduced.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EVKf4KS8Kt5IsIJcieZ1sHsB0hM9n3sZojnR3epEcn6Cuw?e=G94auG), there are only connections between species which are identified by colors, so the network of these edges shows the relationships of living species.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The [edges_color_reduced.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EVKf4KS8Kt5IsIJcieZ1sHsB0hM9n3sZojnR3epEcn6Cuw?e=G94auG) network was performed by Cytoscape with a setting of 8 GB for both heap and stack memory. To illustrate the number of genomes of each species, I wrote [get_size.cc](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/EXB-WaItF3VDnvk_cZNxtv4Bf8lGTRwNUUz4uTnaQ9y3Iw?e=bcYw6b) to calculate the radius of the nodes as the square root of the number of genomes belong to them. In Cytoscape, the size function is a linear one which start from 30 (at the smallest radius) to 100 (at the largest one).
 
-```markdown
-Syntax highlighted code block
+The file [nodes_color.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/ERBC4MW-TIFLhuZQTUjOEQUBMSZMgXM8h-mo5hfpriR31A?e=67SESP) is a brief version of [refseq93.color](http://biovis.net/2019/biovisChallenges_vis/) in which there are only two columns of genomes and their colors.
 
-# Header 1
-## Header 2
-### Header 3
+### Network
 
-- Bulleted
-- List
+Cytoscape 3.7.1 was utilized to depict the bonds of species in file [edges_color_reduced.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EVKf4KS8Kt5IsIJcieZ1sHsB0hM9n3sZojnR3epEcn6Cuw?e=G94auG0). Each species has a specific color. The small labels in each nodes are names of those corresponding species. I chose yFiles organic layout for the graph. The network can be downloaded at [here](https://texastechuniversity-my.sharepoint.com/:u:/g/personal/bao_d_nguyen_ttu_edu/ERpt_fAdBmNCtQwZSb5wgzIBHEslFaQef8AwHuQYuyc1lw?e=YQEPqP).
 
-1. Numbered
-2. List
+### Files
 
-**Bold** and _Italic_ and `Code` text
+Please click the [link](https://texastechuniversity-my.sharepoint.com/:f:/g/personal/bao_d_nguyen_ttu_edu/Euvk6RlFLGtAmCsQf_T8LwwBj59n8T3QBTMC7905Eb3tDg?e=t1KnOz) to get files you need. All explanations of the files are in [Readme.txt](https://texastechuniversity-my.sharepoint.com/:t:/g/personal/bao_d_nguyen_ttu_edu/EWQCaTIkVLFAlM2vv_9My0IBu82Mk-j1DeItixWLeryAtQ?e=zeowZr). 
 
-[Link](url) and ![Image](src)
-```
+### Graph
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/BaoDNguyen/BioVis2019_DataChallenge/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Please click [here](https://texastechuniversity-my.sharepoint.com/:i:/g/personal/bao_d_nguyen_ttu_edu/EcQ3z_BYK9tBp12g_gR2UIIBUklThxGLY825gfSVCVN8BA?e=fAapmZ).

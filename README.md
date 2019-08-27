@@ -24,4 +24,4 @@ Please click the [link](https://texastechuniversity-my.sharepoint.com/:f:/g/pers
 
 ### Graph
 
-![here](/Users/nguyendienquocbao/Documents/GitHub/BioVis2019_DataChallenge/img/mygraph.png).
+![graph](https://github.com/BaoDNguyen/BioVis2019_DataChallenge/blob/master/img/mygraph.png).

@@ -24,4 +24,8 @@ Please click the [link](https://texastechuniversity-my.sharepoint.com/:f:/g/pers
 
 ### Graph
 
-![graph](https://github.com/BaoDNguyen/BioVis2019_DataChallenge/blob/master/img/mygraph.png).
+![graph](https://github.com/BaoDNguyen/BioVis2019_DataChallenge/blob/master/img/mygraph.png)
+
+### Poster
+
+Please click the [link](https://texastechuniversity-my.sharepoint.com/:b:/g/personal/bao_d_nguyen_ttu_edu/EcNXi7MOvc9MmYalZmJRwlwBSxSi5HcFf4PQQeFi2441jw?e=IfyCGk) to view poster.
